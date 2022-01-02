@@ -13,36 +13,40 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class FireballLauncher implements Listener, CommandExecutor {
-	 
-public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-    if (sender instanceof Player) {
+public class FireballLauncher implements Listener, CommandExecutor
+{
 
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+    {
+        if (sender instanceof Player)
+        {
 
-        Player player = (Player) sender;
-        ItemStack fb = new ItemStack(Material.DIAMOND_HOE);
-        ItemMeta fbmeta = fb.getItemMeta();
-        fbmeta.setDisplayName(ChatColor.YELLOW + "Fireball Launcher");
-        fb.setItemMeta(fbmeta);
-        player.getInventory().addItem(fb); }
+            Player player = (Player) sender;
+            ItemStack fb = new ItemStack(Material.DIAMOND_HOE);
+            ItemMeta fbmeta = fb.getItemMeta();
+            fbmeta.setDisplayName(ChatColor.YELLOW + "Fireball Launcher");
+            fb.setItemMeta(fbmeta);
+            player.getInventory().addItem(fb);
+
+        }
         return true;
-  }
-@EventHandler 
-public void onRightClick ( PlayerInteractEvent e) { 
-	  System.out.println("-----PlayerInteract-----");
-	  System.out.println("Action Type: " + e.getAction().name());
-	  System.out.println("Holding: " + e.getPlayer().getItemInHand().getType().name());
-	  System.out.println("Cancelled: " + e.isCancelled());
-    Player p = e.getPlayer();
-     if (e.getAction() == Action.RIGHT_CLICK_BLOCK) { 
+    }
+    @EventHandler
+    public void onRightClick ( PlayerInteractEvent e)
+    {
+        Player p = e.getPlayer();
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK)
+        {
             ItemStack item = p.getInventory().getItemInHand();
-            if (item.getType() == Material.DIAMOND_HOE) {
-                if(item.hasItemMeta() && 
-                        item.getItemMeta().hasDisplayName() && 
-                        item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Fireball Launcher")) {
+            if (item.getType() == Material.DIAMOND_HOE)
+            {
+                if(item.hasItemMeta() &&
+                        item.getItemMeta().hasDisplayName() &&
+                        item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Fireball Launcher"))
+                {
                     p.sendMessage(ChatColor.AQUA + "Ability Used!");
-              }
+                }
             }
-          
-     } }  
+        }
+    }
 }
