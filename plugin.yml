@@ -1,0 +1,7 @@
+name: ShootingGalleryEvent
+main: io.github.pokechamp1.shootinggalleryevent.ShootingGalleryEvent
+version: 1.0
+commands:
+   fb:
+     
+      usage: /fb
