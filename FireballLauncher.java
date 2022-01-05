@@ -35,14 +35,14 @@ public class FireballLauncher implements Listener, CommandExecutor
     public void onRightClick ( PlayerInteractEvent e)
     {
         Player p = e.getPlayer();
-        if (e.getAction() == Action.RIGHT_CLICK_BLOCK)
+        if (e.getAction() == Action.RIGHT_CLICK_AIR)
         {
             ItemStack item = p.getInventory().getItemInHand();
             if (item.getType() == Material.DIAMOND_HOE)
             {
                 if(item.hasItemMeta() &&
                         item.getItemMeta().hasDisplayName() &&
-                        item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Fireball Launcher"))
+                        item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + ChatColor.BOLD.toString() + "Fireball Launcher"))
                 {
                     p.getEyeLocation().multiply(2).spawn(Fireball.class)
                     p.sendMessage(ChatColor.AQUA + "Ability Used!");
