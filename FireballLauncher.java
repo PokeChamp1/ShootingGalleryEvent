@@ -44,6 +44,7 @@ public class FireballLauncher implements Listener, CommandExecutor
                         item.getItemMeta().hasDisplayName() &&
                         item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "Fireball Launcher"))
                 {
+                    p.getEyeLocation().multiply(2).spawn(Fireball.class)
                     p.sendMessage(ChatColor.AQUA + "Ability Used!");
                 }
             }
