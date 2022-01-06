@@ -24,13 +24,14 @@ public class FireballLauncher implements Listener, CommandExecutor
             Player player = (Player) sender;
             ItemStack fb = new ItemStack(Material.DIAMOND_HOE);
             ItemMeta fbmeta = fb.getItemMeta();
-            fbmeta.setDisplayName(ChatColor.YELLOW + "Fireball Launcher");
+            fbmeta.setDisplayName(ChatColor.YELLOW + ChatColor.BOLD.toString() + "Fireball Launcher");
             fb.setItemMeta(fbmeta);
             player.getInventory().addItem(fb);
 
         }
         return true;
     }
+
     @EventHandler
     public void onRightClick ( PlayerInteractEvent e)
     {
@@ -44,8 +45,10 @@ public class FireballLauncher implements Listener, CommandExecutor
                         item.getItemMeta().hasDisplayName() &&
                         item.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + ChatColor.BOLD.toString() + "Fireball Launcher"))
                 {
-                    p.getEyeLocation().multiply(2).spawn(Fireball.class)
-                    p.sendMessage(ChatColor.AQUA + "Ability Used!");
+                    Fireball fb = p.getWorld().spawn(p.getEyeLocation().toVector().add(p.getEyeLocation().getDirection().multiply(2)).toLocation(p.getWorld()), Fireball.class);
+                    fb.setDirection(p.getEyeLocation().getDirection());
+                    fb.setYield(0); 
+                   
                 }
             }
         }
