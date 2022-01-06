@@ -1,21 +1,18 @@
 package io.github.pokechamp1.shootinggalleryevent;
 
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileHitEvent;
 
-import org.bukkit.plugin.java.JavaPlugin;
-public final class ShootingGalleryEvent extends JavaPlugin 
-{
-    @Override
-    public void onEnable() 
-    { 
-        this.getCommand("fb").setExecutor(new FireballLauncher());
-        
-        getServer().getPluginManager().registerEvents(new FireballLauncher(), this);
-        getServer().getPluginManager().registerEvents(new TargetIdentify(), this);
+public class TargetIdentify implements Listener
+ {
 
-    }
-    @Override
-    public void onDisable() 
+	@EventHandler
+    public void ProjectileHit(ProjectileHitEvent e)
     {
-
-    }      
+        Player p = (Player) e.getEntity().getShooter();
+        p.sendMessage(e.getEntity().getLocation().getBlock().getType().toString());
+    }
 }
+
