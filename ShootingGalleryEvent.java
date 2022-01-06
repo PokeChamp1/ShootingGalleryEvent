@@ -8,8 +8,10 @@ public final class ShootingGalleryEvent extends JavaPlugin
     public void onEnable() 
     { 
         this.getCommand("fb").setExecutor(new FireballLauncher());
-
+        
         getServer().getPluginManager().registerEvents(new FireballLauncher(), this);
+        getServer().getPluginManager().registerEvents(new TargetIdentify(), this);
+
     }
     @Override
     public void onDisable() 
